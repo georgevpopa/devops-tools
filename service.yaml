@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: monitor-service
+spec:
+  type: NodePort       # <--- Deschide port pe IP-ul serverului
+  selector:
+    app: monitor-siteuri # <--- Leaga Service-ul de Pod-urile cu eticheta asta
+  ports:
+    - protocol: TCP
+      port: 80         # Portul Service-ului (virtual)
+      targetPort: 5000 # Portul aplicatiei Python (din container)
+      nodePort: 30007  # Portul pe care il accesezi tu din Windows

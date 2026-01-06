@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: monitor-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: monitor-siteuri
+  template:
+    metadata:
+      labels:
+        app: monitor-siteuri
+    spec:
+      containers:
+      - name: container-monitor
+        image: georgevpopa/monitor-siteuri:v3
+        imagePullPolicy: Always
